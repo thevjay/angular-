@@ -1,0 +1,14 @@
+<h1>Product Info</h1>
+<dl>
+    <dt>ProductID</dt>
+    <dd>{{product.productId}}</dd>    //interpolation 
+    <dd>{{product.productName}}</dd>
+    <dt>Stock Availability</dt>
+    <dd>
+        <input type="checkbox" name="" [checked]="product.isAvailabe" id=""/>
+    </dd>
+    <dt>Image</dt>
+    <dd>
+        <img src="{{product.imageUrl}}" />
+    </dd>
+</dl>

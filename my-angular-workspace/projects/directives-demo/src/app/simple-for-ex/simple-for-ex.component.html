@@ -1,0 +1,40 @@
+<div class="container">
+    <h2>Example with NgFor</h2>
+    <ol>
+        <li *ngFor="let item of courses">{{item}}</li>
+    </ol>
+    <br>
+    <select >
+        <option *ngFor="let item of courses">{{item}}</option>
+    </select>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ol>
+                <li *ngFor="let product of productsList">
+                    {{product.category}}
+                    <ul>
+                        <li *ngFor="let item of product.products">{{item}}</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <table>
+        <tr>
+            <th>EmpID</th>
+            <th>EmpName</th>
+            <th>Salary</th>
+        </tr>
+        <tr *ngFor="let emp of employees">
+            <td>{{emp.empId}}</td>
+            <td>{{emp.empName}}</td>
+            <td>{{emp.empSalary}}</td>
+        </tr>
+    </table>
+</div>

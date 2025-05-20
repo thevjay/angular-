@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+        <script>
+        var courses = ["c.#Net","ASP.Net Core","Angular","ReactJS"]
+        function Load() {
+            for(var item of courses){
+                var li = document.createElement("li");
+                li.innerHTML = item;
+                document.querySelector("ol").appendChild(li);
+                var option = document.createElement("option");
+                option.text = item;
+                option.value = item;
+                document.querySelector("select").appendChild(option);
+            }
+        }
+    </script>
+</head>
+<body onload="Load()">
+    <ol>
+
+    </ol>
+    <select>
+
+    </select>
+</body>
+</html>
