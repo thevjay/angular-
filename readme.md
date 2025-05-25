@@ -391,3 +391,272 @@ EmpID     Ename     Salary
 101       Srikanth   12839
 102       Raju       28398
 103       Bhanu      78983
+
+
+# 25  -------------------------------------------------------------------------
+- Creating Angular application without workspace workspace:
+ - To create an application without workspace we use following commands
+ - ng new ShoppingPage
+ - npm install bootstrap --save
+ - npm install bootstrap-icons --save
+
+ - GET                      /products                       It return an array of products
+ - GET                      /products/1                     it return single product details based on ID in JSON format
+ - GET                      /products/categories            it returns all thecategories in string[] format
+ - GET                      /products/category/jewelery     it returns the products that are belongs to perticular category
+
+ - create a contract class based on api response
+
+ - export interface ProductInfo {
+    id:number;
+    title:string;
+    price:number;
+    desc:string;
+    category:string;
+    image:string;
+    rating:{
+        rate:number;
+        count:number
+    }
+ }
+
+ app.componnet.ts
+
+ app.componet.html
+
+# -------------------------------------------------------------------------
+# Directives
+- # Structural    : Which will add/remove the HTML at runtime. Examples: *ngIf, *ngFor and ngSwitch
+- # Attribute/Behavioural : These are used to change the behaviour like styles at runtime, Examples: [ngStyle] and [ngClass].
+- # Components  : These are also directives which will be accessed with selector, which contains a template(HTML)
+
+
+- [NgClass]
+ - It is used to apply the styles/css  classes dynamically to any element.
+ - We can apply styles in 3 Ways
+    - using String
+    - using an Array
+    - using an Object
+
+- Syntax:
+ <div [ngClass]="'classname'"></div>
+ <div [ngClass]="['class1','class2']"></div>
+ <div [ngClass]="{'class1':true,'class2':false}"></div>
+
+# [ngStyle] / Style Binding:
+
+ - It is used to apply the css style properties to the HTML elements dynamically.
+ - These are defines the inline styles for the HTML elements
+    - Inline       <div style="color:red;......."></div>
+    - Internal     Here we use style tag and apply the style.
+    - External     Here we create a seperate CSS file, and define the styles
+
+- The limitation is it is not more reusable and also it is faster in rendering.
+- Syntax:
+    <div [ngStyle]="{attributes:value,attribute:value}"></div>
+
+    public emp = {
+        empID:number,
+        empName:string
+    };
+
+    emp={
+        empId=101,
+        empName:"Srikanth"
+    }
+
+# ----------------------------------------------------------------------------------------
+
+# Event binding:
+- An event is nothing but an action performed by the user.
+- When user perform an action then we will have to handle It by using "EventHandler.
+- An Eventhandler is a function that responds when user perform an action.
+- <button (click)="Demo()"></button>        => Sender
+- function Demo(){
+-     //Logic                                 => Subscribed/Handles
+- } 
+
+- Angular supports all the events that are available in JavaScript.
+
+# Events:
+-  1 Mouse Events
+-  2 keyboard
+-  3 Button
+-  4 Element State Events
+-  5 Clipboard Events
+-  6 TimerEvents etc.
+
+# Note $ event:
+ - Angular allows a default argument i.e "$event", Which is used to get the reference of complete object from where the event has been fired.
+
+ - <div (mouseover)="F1($event)" id="div1">
+    <img/>
+ - </div>
+
+ - function F1(e:any){
+    e.target.id
+    e.target.name
+    e.target.className
+
+
+    //logic
+
+ }
+
+
+# [Creatinng inside workspace an appilcation] = ng generate application EventBinding
+
+# start the Application = ng serve --project=EventBinding 
+
+# [Creating inside an component] = ng g c MouseEvent --skip-tests
+
+
+
+# -------------------------------------------------------------------------------------
+
+- Event              Event Handler
+ -  click           -> Login()
+ -  change          -> ChangeCategory()
+ -  mouseover       -> F1()
+ -  mousemove
+ -  keyup
+ -  keypress
+
+# [Pipes] :
+
+- A Pipe is a Function, which is used to transform the values, while displaying in UI(HTML)
+- It is mainly used to transform the format of the data.
+- We can have two types
+ - Built-in
+    - uppercase         : It is used to convert all the strings in uppercase
+    - lowercase         : It is used to convert all the strings in lowercase
+    - titlecase
+    - number
+    - currency
+    - date  
+        - short
+        - long
+        - full
+        - shortDate
+        - longDate
+        - dd
+        - MM
+        - yy etc.
+    - json
+    - slice
+    - i18Select
+    - percent
+    - i18nPlural etc.
+
+ - Custom : If above pipes are not meet our requirements then we will create a custom pipe.
+
+
+- Pipes can be applied with interpolation syntax
+- Syntax:
+ {{property  | pipe}}
+ 
+  - # ng g application PipesDemo 
+  - # ng serve --project=PipesDemo
+  - # ng g c PipesDemo --skip-tests
+
+# - Custom Pipes:
+ - It is a class, which is created with @Pipe() decorator.
+ - Every Pipe class must be inherited from "PipeTransform".
+ - PipeTransform interface is having on menthod i.e "transform()".
+ - # To generate pipe by using Angular CLI we use a command i.e "ng g pipe <name>".
+ - Once we create the pipe it has to registerd in Module under declaration section.
+ -
+
+
+- # @Pipe({
+-    name:"pipename"
+- })
+
+- export class PipeClass implements PipeTransform{
+    transform(value,options){
+
+    }
+}
+
+- <h1>{{empName | pipename:'emp':'name'}}</h1>
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Custom Directives:
+- Structural:
+    -   Which is used to add/remove the HTML dynamically.
+    -   *ngIf, *ngFor, *NgSwitch
+- Behavioural
+    - Which is used to add/remove the CSS classes and styles dynamically.
+    - [ngStyle] nad [ngClass]
+- Component
+    - If the above directives are not meet the requirements then we can have a custom directive and implement the custome logic and we use.
+    - A custom directive is a class is decorated with @Directive().
+
+ - # ng g c CustomDir
+ - # ng generate directive CustomDir --skip-tests
+
+
+# -----------------------------------------------------------------------------------------------------
+
+# Services in Angular:
+- [Login]             ----      [     ]
+- [Registration]      ----      [OPT()]
+- [Payments]          ----      [     ]
+
+  Component                 Services
+
+- # A Service is a reusable class, which will be created with the help of @Injectable() decorator.
+- It contains pre-defined business logic, which can be used across the application whenever it requires.
+- Advantages:
+    - Reusability
+    - Security
+    - Testability
+    - Maintaince
+    - Extensibility
+
+- Service is a set of factories.
+- Factory is set of functions
+- Angular services are using "Singleton" machanism, which means the object of the service is created in very first request and can be used across the application.
+- # Angular services uses DI.(Dependency Injection)
+    - Providers
+    - Injectors
+- Provider is responsible for locating the values or functions from the memory.
+- Injector will inject the functions and values used into the component.
+- We have built in services like
+    - HttpClient
+    - Routing
+    - Security etc.
+
+- To create a service in angular we use a command "ng generate service <servName>4
+- # ng generate application ServiceDemo
+- # ng s --project=ServiceDemo
+- # ng g service otp --skip-tests
+
+# ------------------------------------------------------------------------------------------------
+# What are the various provider locations for a service?
+@Injectable({
+    provideIn:'root'
+})
+
+- Here provideIn is used to specify the access of the service.
+- root      :  refers to current application level
+- platform  :  It refers the current module level.
+- any       :  It refers the workspace level.
+
+# Component Communication:
+- Angular is madeup with the help components.
+- Share the data from one component to another component we use 3 machanism.
+    - @Input()
+    - @Output()
+    - Services
+
+- Whenever we want to transfer the data from parent to child we use @Input()
+    - import {input} from '@angular/cli'
+    - @Input() public msgFromParent:string="message";
+
+- @Input() is a marker/decorator
+
+- <div>
+    <p></p>
+- </div>

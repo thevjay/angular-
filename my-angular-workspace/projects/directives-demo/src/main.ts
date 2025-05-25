@@ -9,6 +9,9 @@ import { SimpleForExComponent } from './app/simple-for-ex/simple-for-ex.componen
 import { NasaDataComponent } from './app/nasa-data/nasa-data.component';
 import { ForPropertiesComponent } from './app/for-properties/for-properties.component';
 import { ForTrackComponent } from './app/for-track/for-track.component';
+import { ClassDemoComponent } from './app/class-demo/class-demo.component';
+import { StyleDemoComponent } from './app/style-demo/style-demo.component';
+import { CustomDirComponent } from './app/custom-dir/custom-dir.component';
 
-bootstrapApplication(ForTrackComponent, appConfig)
+bootstrapApplication(CustomDirComponent, appConfig)
   .catch((err) => console.error(err));
