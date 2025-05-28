@@ -530,6 +530,94 @@
           }
         }
       }
+    },
+    "RoutingDemo": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/routing-demo",
+      "sourceRoot": "projects/routing-demo/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/routing-demo",
+            "index": "projects/routing-demo/src/index.html",
+            "browser": "projects/routing-demo/src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "projects/routing-demo/tsconfig.app.json",
+            "assets": [
+              "projects/routing-demo/src/favicon.ico",
+              "projects/routing-demo/src/assets"
+            ],
+            "styles": [
+              "projects/routing-demo/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "RoutingDemo:build:production"
+            },
+            "development": {
+              "buildTarget": "RoutingDemo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "buildTarget": "RoutingDemo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "projects/routing-demo/tsconfig.spec.json",
+            "assets": [
+              "projects/routing-demo/src/favicon.ico",
+              "projects/routing-demo/src/assets"
+            ],
+            "styles": [
+              "projects/routing-demo/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "cli": {

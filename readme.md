@@ -1098,3 +1098,90 @@ export class FakeStoreService {
 - Syntax:
  - fb.control('',[Validators.required,Validators.minlength(4)])
  
+
+
+
+
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Angular Routing:
+ - Routing is a technique used to provide the navigation within the application
+ -  An <i>SPA</i> is an application which will get the content from the server when the first request happens.
+ - After that it uses "Routing" to perform "AJAX" calls.
+ - Include the routing library i.e RoutingModule and it is available in "@angular/router"
+ - 
+
+ - # ng generate application RoutingDemo
+ - # ng serve --project=RoutingDemo
+
+ ![alt text](image-3.png)
+
+
+
+# Note:
+ - When we create angular application , by default it asks for including the routing machanism, if we say yes then we will get routing related configurations
+ by default, if we say no, then we will have to include by following steps.
+
+ - # STEPS 1:  Create a file in app folder with the name "app-routing.module.ts"
+ - # STEPS 2:  Write the following code
+
+
+ - import {NgModule} from '@angular/core'
+ - import {RouterModule,Routes} from '@angular/router'
+ 
+
+
+ - const routes: Routes = [];
+
+ - @NgModule({
+    - declarations:[]           - It is used to include the angular elements that are related to the current module.
+    - imports:[]                - It is used to import another modules into current module, 
+    exports:[]                  - It used to exprot the current module items into another module.
+
+ })
+
+
+ - export class AppRotingModule{
+
+ }
+
+
+ - # STEP -3 : Register route related modules in imports section in "app.module.ts".
+  - imports:[
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule
+  ]
+
+- # STEP 4: Build the Routes
+ - Routes are defined in a RouteCollection
+ - And every route is having basic two attributes
+   - path                -   It defined how the component is required.
+   - component           -   It defines the component class to load and render
+
+
+
+   - const routes:Routes = [
+    {path:'/home',component:HomeComponent},
+    {path:'/login',component:LoginComponent}
+   ]
+
+
+# WildCard Routes:
+ - We can define routes with special characters
+ - {path:'/' , component:HomeComponent}           -  Indicated the component to load When the first request
+ - {path:''}                                      - Default
+ - {path:'**'}                                    - Not found
+
+ 
+- # STEP -5:  Create the navigation with "<a>" tag by using "routerLink"  attribute   - Don't use href
+ -  <a routerLink="home">Home</a>
+ -  <a routerLink="login">Login</a>
+
+
+ - # STEP -6: Define the Place to deliver the component output
+   - <router-outlet></router-outlet>
