@@ -1,0 +1,28 @@
+<p>reactive-nested-form works!</p>
+<br>
+<div class="container-fluid">
+    <h2>Product Register</h2>
+    <form [formGroup]="frmRegister">
+        <dl>
+            <h3>Product Details</h3>
+            <dt>Name</dt>
+            <dd>
+                <input type="text" formControlName="Name">
+            </dd>
+        </dl>
+        <div formGroupName="frmVendor">
+            <dl>
+                <dt>Vendor Name</dt>
+                <dd>
+                    <input type="text" formControlName="VendorName">
+                </dd>
+                <dt>Vendor Rating</dt>
+                <dd>
+                    <input type="number" formControlName="VendorRating">
+                </dd>
+            </dl>
+        </div>
+        <button>Register</button>
+        <button type="button" (click)="UpdateClick()">Update</button>
+    </form>
+</div>

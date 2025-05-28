@@ -1,0 +1,22 @@
+<p>reactive-form works!</p>
+<br>
+<div class="container-fluid">
+    <h2>Register User</h2>
+    <form [formGroup]="registrationForm" (submit)="Register(registrationForm.value)">
+        <dl>
+            <dt>Username</dt>
+            <dd>
+                <input type="text" name="" formControlName="Username" id="">
+            </dd>
+            <dt>Age</dt>
+            <dd>
+                <input type="number" formControlName="Age" name="" id="">
+            </dd>
+            <dt>Mobile</dt>
+            <dd>
+                <input type="text" formControlName="Mobile" name="" id="">
+            </dd>
+        </dl>
+        <button>Register</button>
+    </form>
+</div>

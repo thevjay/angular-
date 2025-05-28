@@ -1,0 +1,28 @@
+<p>template-form works!</p>
+<br>
+<div class="container">
+    <form #frmRegister="ngForm" class="p-2" [ngClass]="{'.valid-style':frmRegister.valid,'invalid-style':frmRegister.invalid}"  (submit)="SubmitClick(frmRegister.value)">
+        <h2>Template Driven Form</h2>
+        <hr>
+        <dl>
+            <dt>Enter Username</dt>
+            <dd>
+                <input type="text" name="Username" required minlength="4" maxlength="10" ngModel #Username="ngModel">
+            </dd>
+            <dt>Select Age:</dt>
+            <dd>
+                <input type="range" name="Age" required="" ngModel #Age="ngModel">
+            </dd>
+            <dt>Select City</dt>
+            <dd>
+                <select name="City" ngModel #City="ngModel">
+                    <option>Hyd</option>
+                    <option>Delhi</option>
+                    <option>Mumbai</option>
+                </select>
+            </dd>
+        </dl>
+        <button [disabled]="frmRegister.invalid">Register</button>
+        <button *ngIf="frmRegister.dirty">Save as Draft</button>
+    </form>
+</div>

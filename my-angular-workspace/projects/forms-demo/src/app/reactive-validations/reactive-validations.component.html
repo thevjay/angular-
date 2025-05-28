@@ -1,0 +1,19 @@
+<p>reactive-validations works!</p>
+<br>
+<div class="container-fluid">
+    <form [formGroup]="frmRegister" (submit)="Register(frmRegister.value)">
+        <h2>Registration</h2>
+        <dl>
+            <dt>Name</dt>
+            <dd>
+                <input type="text" formControlName="Name">
+            </dd>
+            <dd class="text-danger" *ngIf="Name.touched"> 
+                <p *ngIf="Name.errors?.['required']">Name is Mandatory</p>
+                <p *ngIf="Name.errors?.['minlength']">Name is min 4 characters mandatory</p>
+            </dd>
+        </dl>
+
+        <button>Register</button>
+    </form>
+</div>

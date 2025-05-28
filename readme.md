@@ -14,6 +14,27 @@
 
 - npm install -g typescript
 
+# Topic
+- > Introducation Angular
+- > Setup the Evironment
+- > Typescript
+- > Creatin abgular15 App and Folder and file structure
+- > Templets,style,Directives
+- > Components
+- > Data Binding
+- > Pipes
+- > Services => Integration (API Calls + AJAX)
+- > Dependency Injection
+- > Angular Forms
+- > Routing (SPA) along with Authentication
+- > RxJS Operators & Observables
+- > MOdules
+- > Version Enhancements
+- > Source code of simple Project on Angular (JWT) 
+
+# Environment Setup for building Angular Application
+- Node JS
+
 # angular application developement
 - Creating Angular application
 - Steps to create 
@@ -651,12 +672,429 @@ EmpID     Ename     Salary
     - @Output()
     - Services
 
-- Whenever we want to transfer the data from parent to child we use @Input()
+- # Whenever we want to transfer the data from parent to child we use @Input()
     - import {input} from '@angular/cli'
     - @Input() public msgFromParent:string="message";
 
-- @Input() is a marker/decorator
+- @Input() is a marker/decorator Which is used to mark any property that is expecting the data from the parent component.
+- Once we have the data from parent component we are sending it to the child by using property binding "[]"
 
+- <app-child [msgFromParent]="message"></app-child>
+
+- ng g c Child --skip-tests
+- ng g c Parent --skip-tests
+
+- <>
 - <div>
     <p></p>
 - </div>
+
+- Parent to Child   data transform
+
+- # Step-1 : Declare a property in child compoenent by using @Input()
+- # Step-2 : Prepare the data from parent component
+- # Step-3 : Give the data by using child selector and attribute/property binding
+
+
+# From the Child we will transfer the data to the parent by using @Output()
+
+- Create a custom event when we are working with Output() decorator.
+- EventEmitter is a class which is used to create a custom event.
+
+- @Output() public ChildClick:EventEmitter<string> = new EventEmitter<string>();
+
+- Emit the value by using event
+- public ButtonClick(){
+    this.ChildClick.emit("Srikanth");
+}
+
+- In Child component select use the custom event
+    - <app-child (ChildClick)="GetMessageFromChild()"></app-child>
+
+-  Event handler will get the data and that can be bind in Parent 
+- public GetMessageFromChild(){
+-     this.msg = e.value;
+- }
+
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './child.component.html',
+  styleUrl: './child.component.css'
+})
+export class ChildComponent {
+  @Input() public msgFromParent:string = '';
+  @Input() public studentObj:any[]=[];
+
+
+  @Output() public ChildClick:EventEmitter<string> = new EventEmitter<string>();
+
+  public ChildButtonClick(){
+    this.ChildClick.emit('Hello ! from Child');
+    
+  }
+
+}
+
+
+
+import { Component } from '@angular/core';
+import { ChildComponent } from "../child/child.component";
+
+@Component({
+  selector: 'app-parent',
+  standalone: true,
+  imports: [ChildComponent],
+  templateUrl: './parent.component.html',
+  styleUrl: './parent.component.css'
+})
+export class ParentComponent {
+  public msg:string = '';
+
+  public students:any[]=[
+    {stdId:101,stdName:"Srikanth"},
+    {stdId:102,stdName:"RaJu"},
+    {stdId:103,stdName:"Ramesh"},
+    {stdId:104,stdName:"Rajesh"},
+    {stdId:105,stdName:"RaJURE"},
+    {stdId:106,stdName:"Klasen"},
+  ]
+  public SendClick(){
+    this.msg = 'Hello from Parent'
+  }
+
+  public msgFromChild:string='';
+
+- # Parent component have to collect the event arguments and use in its context.
+
+
+
+  public GetMessageFromChild(e:any){
+    this.msgFromChild=e;
+  }
+}
+
+- <app-child [MsgFromParent]="message"></app-child>
+
+- Syntax: Transporting data from child to parent
+
+- You have to create a custom event
+
+ import { Output,EventEmitter } from '@angular/core'
+ 
+@Output() public ChildClick:EventEmitter<string> = new EventEmitter<string>();
+
+- Emit the value by using any built-in event
+
+  public OnButtonClick(){
+    this.ChildClick.emit('message')
+
+  }
+
+- Child component uses custom event to emit value
+
+ - <app-child (ChildClick)="GetMessageFromChild($event)">
+
+
+
+- SYntax : Transport data from parent to child
+
+- Create a property in child component that can accept Input from parent.
+ - Import {INput} from '@angular/core';
+ - Note: @Input() is a marker or directive which is used to mark any
+   property that  is expecting data from parent component.
+
+- Send data Into the component using "Property Binding Technique".
+
+    <app-child [MsgFromParent]="message"></app-child>
+
+- Syntax: Transporting data from child to parent
+
+- You have to create a custom event
+
+Import { Output,EventEmitter} from '@angular/core'
+
+@Output() public ChildClick:EventEmitter<string>=new EventEmitter<string>();
+
+
+
+# Challenges
+- 1 Accessing a compoent in another
+   [Parent and Child]
+
+    Syntax:
+     <app-parent>
+        <app-child></app-child>
+    <app-parent>
+
+- 3 Transporting data from child to parent
+
+- Syntax : Transport data from parent to child
+
+- Create a property in child component that can accept input from parent.
+
+ import { input } from '@angular/core'
+
+ @input() public MsgFromParent:string='';
+
+
+
+# -------------------------------------------------------------------------------------------------------------------
+
+# RxJS =>    HttpClient:
+- HttpClient is an in-built service provided by the angular framework.
+- It is available in a library I.e  RxJS.
+- It is used to connect with server application and perform the CRUD Operations.
+- HttpClient will maintain the data in JSON format, Where JSON stands for JavaScript Object Notation., Which is a fully compatable format data for client side techonologies.
+
+
+
+ ![alt text](image.png)
+
+
+ - What is the difference between fetch() and HttpClient service?
+
+    Fetch()                                              HttpClient
+  - # -------------------------------------------------------------------------
+    - 1 It return data in binary format.            -         It returns in JSON format.
+    - 2 Parsing is required                         -         It is required to format the data
+    - 3 Fetch is not a typesafe                     -         it is a typescript
+    - 4 Poor in exception handling                  -         Good in exception handling
+    - 5 It is synchronus                            -         It is async
+    - It is from base JavaScript framework          -         It is available in a library i.e  RxJS(Reactive Extension for Javascript)
+
+
+- #  How to work with RxJS HttpClient Service?
+- Step-1: import the library
+ import {HttpClient} from '@angular/common/http'
+- step-2: Include the HttpClientModule in AppModule
+  Import {HttpClientModule} from '@angular/common/http';
+- step-3: Inject the HttpClient service in any of the component/service.
+  constructor(private http:HttpClient){}
+- step-4: Access the HttpClient class methods
+     
+     this.http.get()
+     this.http.post()
+     this.http.put()
+     this.http.delete()
+
+
+ # ng g s FakeStore --skip-tests
+
+ # -----------------------------------------------------------------------------------------------------------------------------------------------
+ # - Services again explaination
+ - # ng generate service <servName>
+
+ - RxJS :
+    - It stands for Reactive Extension for Javascript and it is a library.
+    - It Provides libraries to communicate with servers asynchronsly
+    - To make an async call we use "HttpClient", It is a service.
+    - We have to inject the HttpClient class and make the service class.
+
+    - get()              -  It is used to get the data from server.
+    - post()             - Submitting/Saving the data in server.
+    - put()              - It is used for updating the data.
+    - delete()           - Delete from server. 
+    - patch()            - Partial update.
+
+- #  What is the difference between fetch()  and using HttpClient service?
+-           fetch()                                        HttpClient
+- It returns data in binary format                        - It returns in JSon format
+- It is making sync calls                                 - It is async calls
+- Convertion is required                                  - It is not required to convert.
+- Poor in exception handing                               - Good in exception handling
+- We don't have typesafety                                - We have typesafe 
+
+- # To work with HttpClient service we have to follow 3 steps:
+    - Include in service class file using import statement
+    - Include the HttpClientModule in app.module.ts  file
+    - Inject the HttpClient class in constructor of service/component.
+    - Use the Http methods to make the server calls.
+
+- # Internally RxJS is making Async events using "Observable"
+- # Async means "Un-blocking" technique , Which executes actions without blocking one on another
+
+# RxJS provide few components
+     - data exchnageble componets
+ - # Observable : It is used to configure asynchronus event to server.
+  - Observable will make continuesly asynchronous calls to servers while retriving the data the end point the servuce becomoe the empty
+ - # Subscribe : Subscriber executes the async events and accepts the data.
+ - #
+
+
+- import { Injectable } from '@angular/core';
+- import { HttpClient } from '@angular/common/http';
+- import { Observable } from 'rxjs';
+- import { ProductInfo } from './ProductInfo';
+
+- @Injectable({
+  providedIn: 'root'
+})
+export class FakeStoreService {
+
+  constructor(private http:HttpClient) {
+
+   }
+
+   public GetProducts():Observable<ProductInfo[]>{
+    return this.http.get<ProductInfo[]>('https://fakestoreapi.com/products');
+   }
+
+   public GetCategories():Observable<string[]>{
+    return this.http.get<string[]>('https://fakestoreapi.com/products/categories')
+   }
+
+   public GetJeweleryInfo():Observable<any[]>{
+    return this.http.get<any[]>('https://fakestoreapi.com/products/category/jewelery');
+   }
+}
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------------------
+
+![alt text](image-1.png)
+
+# Angular Forms:
+- In angular we have two different forms are available those are 
+  - # Template Driven Forms
+  - # Model Driven Forms / Reactive Forms
+
+- # Template Driven Forms:
+ - These forms are configured everything and handled everything at View/Presention / HTML level
+ - It uses a design pattern i.e MVVM[MOdel-View View-Model].
+ - These forms area available in a library i.e "@angular/forms" and it is available in "FormsModule".
+ - Here forms are represented with "ngForm", and input controls are represented with "ngModel".
+ - # Syntax:
+    - <form #frmRegister="ngForm">
+        -    <input type="text" ngModel #userName="ngModel">
+    - </form>
+
+- # ng g application FormsDemo
+- # ng g c TemplateForm --skip-tests
+- # ng s --project=FormsDemo
+
+- # ADVANTAGES:
+- It reduces number of requests
+- It Improves the load time.
+
+- # DISADVANTAGES:
+- NO code seperation.
+- No much reusebility, Extensibility
+- UI is very heavy and slow in rendering.
+
+- # When to we use template driven forms?
+ - We always use template forms, when we want a form with stable and limited functinality.
+ and it is not required regular extensions.
+ 
+# Template Forms.ts: 
+
+# Validation in Template Driven Forms:
+ - Validation is a process of verifying the user input.
+ - Validation are required to ensure that contradictiory and unauthorized data is not going to store on Databases.
+ - Validations are required in both the ways
+    - Client Side    : Javascript  => JQuery   => Angular
+    - Server Side    :
+
+- In Angular we have validation services are avilable, and these services will use HTML validation only.
+    - required
+    - minlength
+    - maxlength
+    - min
+    - max
+    - email
+    - number
+    - url  etc.
+
+- In angular we can have two states of validations
+    - FormState
+    - ControlState/Input State
+
+#     States                    Property                             Type                         Description
+- NgPristine                 pristine                              boolean                     It returns true, if no field in the form modified.
+- NgDirty                   dirty                               boolean                     It returns true, when any one field in the form modified.
+- ngValid                    valid                               boolean                     It returns true, when all the validations are success in form elements.
+- ngInvalid                  invalid                               Boolean                    it returns true, when single validation fall
+- ngSubmitted              submitted                                 boolean                    It returns true, when we submitted the form.
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Control level/Input state validation services:
+- touched                  -   
+- untouched
+- pristine
+- dirty
+- valid
+- invalid
+- error object
+
+![alt text](image-2.png)
+
+
+# Model Driven/Reactive Forms in Angular:
+ - In these forms we can configure and manipulate data at controller level(Component Level)
+ - Here we don't have any direct interaction with View and Model and the interaction should be happen only through the controller.
+ - It is clean code.
+ - UI is light weight, so that rendering is also will be easy.
+ - It is available in a module i.e  "ReactiveFormsModule", Which is available in "@angular/forms".
+ - Inorder to works with Reactive forms we have 3 classes
+  # - FormGroup           -   It is used to create a form element.
+  # - FormControl         -   It is used to create an input elemet.
+  # - FormBuilder         -   It is a service.
+
+- # Note : Whenever if we have complex forms then we use thes.
+
+
+- # Syntax:
+- public frmRegister = new FormGroup({
+    inputname1: new FormControl("IntialValue",validation),
+    inputName2: new FormControl("Intialvalue",validation),
+})
+
+- We have to bind the form group and controls to the UI like
+ - <form [formGroup]="frmRegister">
+    -/      <input type="text" formControlName="inputName1"/>
+    </form>
+
+
+# -----------------------------------------------------------------------------------------------------------------------------------------------
+
+# - Nested Forms and Validations on Reactive forms:
+- 
+
+
+
+# FormBuilder :
+ - It is a Service
+ - It used "Single Ton" pattern, which means it creates single memory.
+ - As it is a service, we can inject with constructor of the component.
+ - It contains different menthods like
+    - group()    - It is used to configure a form or child forms
+    - control()  - It is used to configure a control
+    - array()    - It is used to create an array of controls
+
+
+# - FromGroup
+# - FromGControl
+# - FromBuilder
+
+    - group()
+    - control
+    - array()
+
+# Validation in Reactive Forms:
+ - In Reactive forms we will implement validation at controller component level.
+ - Here we don't need to configure the validation at UI.
+ - In order to implement validations we have a service i.e  "Validators"
+ - It contains different validation like
+    required
+    minlength
+    maxlength
+    pattern etc.
+
+- Syntax:
+ - fb.control('',[Validators.required,Validators.minlength(4)])
+ 

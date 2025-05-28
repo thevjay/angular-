@@ -1,0 +1,15 @@
+<h1>Example with Get Request</h1>
+<hr>
+<button class="btn btn-primary" (click)="GetProductData()">GetData</button>
+<br>
+{{products|json}}
+<br>
+<button class="btn btn-primary" (click)="GetCategoryData()">Get Categories</button>
+<br>
+<ol>
+    <li *ngFor="let item of categories">{{item}}</li>
+</ol>
+<br>
+<button class="btn btn-primary" (click)="GetJeweleryData()">Get Jewelery</button>
+<br>
+{{jeweleryProducts|json}}

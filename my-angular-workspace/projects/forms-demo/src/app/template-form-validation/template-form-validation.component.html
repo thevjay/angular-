@@ -1,0 +1,27 @@
+<p>template-form-validation works!</p>
+<br>
+<div class="container-fluid">
+    <form class="m-2 p-4" #frmRegister="ngForm">
+        <h2>Register User</h2>
+        <dl>
+            <dt>Username</dt>
+            <dd>
+                <input type="text" name="Username" required minlength="4" maxlength="12" ngModel #Username="ngModel" id="">       
+            </dd>
+            <dd class="text-danger" *ngIf="frmRegister.submitted && Username.invalid">
+                    <p *ngIf="Username.errors?.['required']">Username is required</p>
+                    <p *ngIf="Username.errors?.['minlength']">Username must contain more then 4 Characters</p>
+                    <p *ngIf="Username.errors?.['maxlength']">Username must contain less then 12 Characters</p>   
+            </dd>
+            <dt>Mobile</dt>
+            <dd>
+                <input type="text" required ngModel #mobile="ngModel" pattern="\+91\d{10}" name="mobile" id="">
+            </dd>
+            <dd class="text-danger" *ngIf="frmRegister.submitted && mobile.invalid">
+                <p *ngIf="mobile.errors?.['required']">Mobile number is required</p>
+                <p *ngIf="mobile.errors?.['pattern']">Mobile number must be digits</p>
+            </dd>
+        </dl>
+        <button class="btn btn-primary">Register</button>
+    </form>
+</div>
