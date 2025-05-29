@@ -1185,3 +1185,124 @@ export class FakeStoreService {
 
  - # STEP -6: Define the Place to deliver the component output
    - <router-outlet></router-outlet>
+
+
+
+# --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# FlipkartWeb
+- # ng g application FlipkartWeb
+- # ng s --project=FlipkartWeb
+
+- # 
+- Example on Routing, components, Child Route, Services, RouteGuards, WildCard
+- Routes:
+# step 1 - Creates the required folders
+  - components
+  - services
+  - contracts
+  - guards
+# Step 2 - Create the contract class "fakestore.contract.ts"
+ - export interface FakeProductContract{
+    id:number,
+    title:string,
+    price:number,
+    description:string,
+    category:string,
+    image:string,
+    rating:{
+        rate:number,
+        count:number
+    }
+}
+
+
+# Step 3 - Create a service and make api calls
+- import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { FakeProductContract } from "../contracts/fakeproduct.contract";
+
+@Injectable({providedIn:'root'})
+
+
+export class FlipkartService {
+    constructor(private http:HttpClient) {}
+
+    public GetProducts():Observable<FakeProductContract[]>{
+        return this.http.get<FakeProductContract[]>('https://fakestoreapi.com/products')
+    }
+
+    public GetProductById(id:string):Observable<FakeProductContract>{
+        return this.http.get<FakeProductContract>('https://fakestoreapi.com/products/'+id)
+    }
+
+    public GetCategories():Observable<string[]>{
+        return this.http.get<string[]>('https://fakestoreapi.com/products/categories')
+    }
+
+    public GetProductByCategory(categoryName:string):Observable<FakeProductContract[]>{
+        return this.http.get<FakeProductContract[]>('https://fakestoreapi.com/products/category/'+categoryName)
+    }   
+}
+
+- 
+
+- 
+
+# Step 4 - Create the components
+ - # ng g c FlikartAdmin --skip-tests
+ - # ng g c FlipkartDetails --skip-tests
+ - # ng g c FlipkartElectronics --skip-tests
+ - # ng g c FlipkartHome --skip-tests
+ - # ng g c FlipkartIndex --skip-tests
+ - # ng g c FlipkartJewelery --skip-tests
+ - # ng g c FlipkartMens --skip-tests
+ - # ng g c FlipkartWomens --skip-tests
+ - # ng g c FlipkartMoreDetails --skip-tests
+ - # ng g c Notfound --skip-tests
+
+
+- Step 4  -: Integrate the Bootstrap to the project
+
+- Step 5  -: Implement the routing.
+- # imports: [RouterOutlet,RouterModule],
+- # in HTML Page     <section class="mt-3">
+    <router-outlet></router-outlet>
+  </section>
+
+
+
+- # Error : ERROR NullInjectorError: R3InjectorError(Standalone[_FlipkartHomeComponent])[_FlipkartService -> _FlipkartService -> _FlipkartService -> _HttpClient -> _HttpClient]: 
+  NullInjectorError: No provider for _HttpClient!
+    at NullInjector.get 
+
+    - # import HttpClientModule
+
+- # Understanding dependency injection
+  - export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes),provideHttpClient()]
+};
+
+
+
+# Child Routing :
+- 
+
+# RouteParameters:
+ - These are used to share the data along with the URL.
+ - Every route can use the parameters, these are used to trasport the data from one component to another component
+ - These parameters are specified in path
+  - # {path:'details/:id/:name/:price, component:DetailsComponent}
+  - # We can pass the values to the parameters like
+
+  - http://localhost:4200/details/1/oneplus/23000 [All parameters are mandatory]
+
+ - # To access the parameters values we use a service "ActivatedRoute"
+  - constructor(private route:ActivatedRoute){}
+
+  - public id:string = this.route.snapShot.paramMap.get('id');
+
+  - public name:string = this.route.snapShot.paramMap.get('name');
+
+  - public price:string = this.route.snapShot.paramMap.get('price')

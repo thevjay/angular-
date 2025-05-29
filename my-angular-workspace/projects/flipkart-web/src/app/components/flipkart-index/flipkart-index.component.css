@@ -1,0 +1,29 @@
+/* Header styles */
+header {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation links */
+header .nav-link {
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+header .nav-link:hover {
+  color: #ffc107; /* Bootstrap warning color */
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+/* Icons */
+header .icons span {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+header .icons span:hover {
+  transform: scale(1.2);
+  color: #dc3545; /* Bootstrap danger color */
+}

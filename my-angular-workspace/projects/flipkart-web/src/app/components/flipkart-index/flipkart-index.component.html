@@ -1,0 +1,23 @@
+<div class="container">
+  <header class="m-2 bg-dark text-white p-3 d-flex flex-wrap justify-content-between align-items-center">
+    <div>
+      <h2 class="m-0">Welcome to Flipkart</h2>
+    </div>
+    <nav class="nav gap-3">
+      <a routerLink="/home" class="nav-link text-white">Home</a>
+      <a routerLink="/jewelery" class="nav-link text-white">Jewelery</a>
+      <a routerLink="/electronics" class="nav-link text-white">Electronics</a>
+      <a routerLink="/mens" class="nav-link text-white">Mens</a>
+      <a routerLink="/womens" class="nav-link text-white">Womens</a>
+      <a routerLink="/admin" class="nav-link text-white">Admin Portal</a>
+    </nav>
+    <div class="icons d-flex gap-2">
+      <span class="bi bi-heart"></span>
+      <span class="bi bi-heart"></span>
+      <span class="bi bi-heart"></span>
+    </div>
+  </header>
+  <section class="mt-3">
+    <router-outlet></router-outlet>
+  </section>
+</div>
