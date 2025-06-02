@@ -28,9 +28,13 @@
 - > Angular Forms
 - > Routing (SPA) along with Authentication
 - > RxJS Operators & Observables
-- > MOdules
+- > Modules                                       - a module is a container that helps you organize related code together — like components, services, directives, and pipes — into a cohesive unit.
+- An Angular module is defined using the @NgModule decorator. It's usually used to:
 - > Version Enhancements
 - > Source code of simple Project on Angular (JWT) 
+
+![alt text](image-6.png)
+
 
 # Environment Setup for building Angular Application
 - Node JS
@@ -1372,7 +1376,7 @@ export class FlipkartService {
  - CDK (Component Development Kit) which provides good performence.
  - 
 
-- # Set environment for Angular Meterial:
+- # SetUp environment for Angular Meterial:
  - Open the terminal from the project workspace
  - # ng add @angular/material
  - Which prebuilt theme are you using : indigo-pink
@@ -1398,5 +1402,6 @@ export class FlipkartService {
 # ----------------------------------------------------------------------------------------------------------------------------------------
 # Angular CDK:
  - CDK stands for Compoent Developemet Kit
- - 
+ - ![alt text](image-5.png)
+ - It provides performence  and behaviour for the components.
  

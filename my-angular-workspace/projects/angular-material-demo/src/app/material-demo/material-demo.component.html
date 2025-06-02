@@ -26,4 +26,20 @@
       <mat-datepicker #departure></mat-datepicker>
     </mat-form-field>
   </div>
+  <div class="container-fluid">
+    <h2>Without Lazy Loading</h2>
+    <div style="height: 300px;border: 1px solid black;padding: 5px;width: 250px;" class="overflow-auto">
+      <div *ngFor="let item of products">
+        <img [src]="item.image" width="150px" height="150px" alt=""/>
+
+      </div>
+    </div>
+
+    <h2>With Lazy Loading</h2>
+    <cdk-virtual-scroll-viewport itemSize="100" class="overflow" style="height: 300px;border: 1px solid black;padding: 5px;width: 250px;" >
+      <div *cdkVirtualFor="let item of products">
+        <img [src]="item.image" width="150" height="150" alt=""/>
+      </div>
+    </cdk-virtual-scroll-viewport>
+  </div>
 </div>
