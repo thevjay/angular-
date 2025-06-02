@@ -21,7 +21,7 @@
 - > Creatin abgular15 App and Folder and file structure
 - > Templets,style,Directives
 - > Components
-- > Data Binding
+- > Data Binding                        
 - > Pipes
 - > Services => Integration (API Calls + AJAX)
 - > Dependency Injection
@@ -165,9 +165,9 @@ Note: one we execute above command it will open/ the project will run on a port 
 
     - Code behind Components
         - Here we are going to implement by using diffirent files like
-        UI    - component.html
+        UI        - component.html
         Styles    - component.css
-        Logic    - component.ts
+        Logic     - component.ts
 
 
 - To work with the component we use to follow below steps
@@ -1287,9 +1287,21 @@ export class FlipkartService {
 
 
 # Child Routing :
-- 
+-  export const routes: Routes = [
+    {path:'home',component:FlipkartHomeComponent},
+    {path:'jewelery',component:FlipkartJeweleryComponent},
+    {path:'electronics',component:FlipkartElectronicsComponent},
+    {path:'mens',component:FlipkartMensComponent},
+    {path:'womens',component:FlipkartWomensComponent},
+    {path:'details/:id',component:FlipkartDetailsComponent,
+#       children:[
+#           {path:"more/:id",component:FlipkartMoreDetailsComponent}
+        ]
+    }
+];
 
 # RouteParameters:
+- # this.id = this.route.snapshot.paramMap.get('id')
  - These are used to share the data along with the URL.
  - Every route can use the parameters, these are used to trasport the data from one component to another component
  - These parameters are specified in path
@@ -1306,3 +1318,85 @@ export class FlipkartService {
   - public name:string = this.route.snapShot.paramMap.get('name');
 
   - public price:string = this.route.snapShot.paramMap.get('price')
+
+
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# - ChildRoutes:
+ - These are exactly similar to routes, but these routes are configured in way that it should render it's data in another component's <router-outlet>
+
+ - To implement the child routing we use
+    - {path:'details/:id',component:FlipkartDetailsComponent,
+        children:[
+            {path:'more/:id',component:FlipkartMoreDetailsComponent},
+        ]
+    }
+
+
+# Route Guards : 
+ - These are used to provide the security for the routes.
+ - RouteGuards are the services that are defined to protect the route based on the condition.
+ - # Angular support 4 guards
+   - CanActivate            - It execute logic when user enter into the route
+   - CanDeactivate          - It executes When user leaves the route.
+   - CanLoad                - It is used to implement lazy Routing
+   - CanChildActivate       - It execute logic when user enter into the route
+
+
+
+- # Lazy Routing:
+ - These are two ways to load the content when the routing was happens
+  - Eager Loading : It loads the data when the application is loaded.
+  - Lazy Loading  : Based on the requirement/Demand if we load the data
+
+- # It is mainly user to improve the performance
+
+- ![alt text](image-4.png)
+
+
+# Creating the module:
+ - ng g module BlogsInfo --routing
+
+# Inside the module Creating the component:
+ - ng g c Blogs --skip-tests
+
+# {path:'blogs',loadChildren:()=>import('../app/blogs-info/blogs-info-routing.module').then((m)=>m.BlogsInfoRoutingModule)}
+
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+# Angular Meterial:
+ - Angular meterial is a component library.
+ - It contains serveral pre-defined components, which can be customized based on the requirements of the projects.
+
+ - Components
+ - CDK (Component Development Kit) which provides good performence.
+ - 
+
+- # Set environment for Angular Meterial:
+ - Open the terminal from the project workspace
+ - # ng add @angular/material
+ - Which prebuilt theme are you using : indigo-pink
+ - Setup global angular material typegraphy?
+ - Do you want to enable animations? Yes and Include
+
+ # ng g application AngularMaterialDemo
+
+ # What are the changes that happens when we install angular material?
+  - 1. Animation modules are imported in "app.module.ts" export const appConfig: ApplicationConfig = {
+  providers: [provideRouter(routes),provideAnimations()]
+};
+
+  - 2. Angular.json is configured with "css" them   
+  - 3. index.html links are added for typography.
+  - 4. styles.css  global styles are added.
+
+    
+  - Can we use both Bootstrap and Angular material together?
+  Yes, we can
+
+
+# ----------------------------------------------------------------------------------------------------------------------------------------
+# Angular CDK:
+ - CDK stands for Compoent Developemet Kit
+ - 
+ 

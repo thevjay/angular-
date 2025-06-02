@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <h2>Bootstrap Input</h2>
+  <div class="w-25">
+    <label class="form-label">UserName</label>
+    <div>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+
+  <br>
+
+  <h2>Material Input</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>UserName</mat-label>
+    <input type="text" ngModel #Username="ngModel" matInput>
+  </mat-form-field>
+  <h2>{{ Username.value }}</h2>
+
+  <div>
+    <h2>Angular Material DatePicker</h2>
+    <hr>
+    <mat-form-field appearance="outline">
+      <mat-label>Departure Date</mat-label>
+      <mat-datepicker-toggle matSuffix [for]="departure"></mat-datepicker-toggle>
+      <input matInput [matDatepicker]="departure">
+      <mat-datepicker #departure></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
