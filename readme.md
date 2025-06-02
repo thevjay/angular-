@@ -1405,3 +1405,29 @@ export class FlipkartService {
  - ![alt text](image-5.png)
  - It provides performence  and behaviour for the components.
  
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Unit Testing (Jasmin and karma):
+
+- Testing is the process of verifying.
+- "AS-IS" and "TO-BE"
+
+- "Dev => Unit Testing(DEV) => Story Testing(Logic testing) => Integration => Regression => UAT => Production
+
+- "AS-IS"  refers What developer designed
+- "To-BE"  refers What Client wants
+
+- AS-TS === TO-BE    => Test Pass
+- AS-TS !== TO-BE    => Test Fail
+
+- Angular inbuit provides a framework "Jasmin-karma".
+
+# Unit testing is in 3 phases
+    Arrange          - Configure                                - describe()
+    Act              - Define the functionality to test         - It()
+    Assert           - Report the result                        - expect()
+
+# test command
+- ng test --project=AngularMaterialDemo
+
