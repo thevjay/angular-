@@ -1467,3 +1467,81 @@ export class FlipkartService {
     
   ```
   ![alt text](image-10.png)
+
+
+
+
+# RxJS Operators & Observables:
+- RxJS stands for Reactive Extension for Javascript.
+- It is a library Which is mainly used to perform asynchronus tasks in angular applications
+- By default every angular application is having RxJS library installed, and It is not only used in angular but also it can be used with any of client side
+library.
+
+
+- RxJS is a combination od two things
+    - # Observable : It is mainly used to consume the data from the source continusly
+    - # Operator: These are used to add an additional logic to the information.
+        - of, from, create, interval, timer, map, filter, reduce, merge, join, forkJoin, debounceTime etc.
+
+ # Observables:
+ - Observable is a class.
+ - It used to emit the data over a period of time.
+    -  let o = new Observable();
+  - To create object of this type, we use callback function.
+    - let o = new Observable(function(){});
+  - To that callback function we need to pass an argument.
+    - let o = new Observable(function(arg){});
+
+ - This object emits somedata continusly , if there is  no data error will emit with the help of following menthods
+
+  - next()
+    error()
+    let o = new Observable(function(obj){
+        obj.next(1);
+        obj.nexy(2);
+        obj.error('error');
+    })
+ 
+  - Without subscriber we don't need any Observable
+    - o.subscribe(
+        data => {console.log(data)},
+        err  => {console.log(err)},
+        () => {
+            console.log('completed')
+        }
+    )
+
+
+# Operators:
+- RxJS library provides different operators, Which will be used to clean adn reduce the number of lines code and perform async operations.
+- An operator is a pure function in Javascript.
+- A pure function will also returns same value What we passed as an input.
+- In Operators Observable as Given as in input and output.
+- Examples: of, from, create, interval, timer, map, filter, reduce, merge, join, forkJoin, debounceTime etc.
+
+- # of   Operator:
+ - Make an Observable by using a collection like string, array an object.
+ 
+
+- # from operator:
+ - It creates an Observable from an array, and it always accepts an array like an array.
+
+
+# Note:
+ - of() will return complete array value at once, and from() will return single value from the array. ( one by one will take )
+
+# interval():
+ - creates an observanle that emits sequential numbers on every specified interval of time, on a specified schedule.
+ - let numbers = interval(500);
+ 
+ # debounceTime():
+  - It emits a notification from the source Observable only after a particular time span has passes without another source emmision
+
+  - It is used in following scenario
+
+  - [formGroup]="searchForm"   -  ReactiveFormsModule
+
+  - Pipe() is used to chain multiple operators that are executed in a sequence.
+
+ # Component Life Cycle Hooks:
+   - 
