@@ -1431,3 +1431,29 @@ export class FlipkartService {
 # test command
 - ng test --project=AngularMaterialDemo
 
+
+
+# Services => Integration (API Calls + AJAX) :
+- Step:1 - Create a database table based on the choice
+- Step:2 - Create an server application either by using Java/.Net/Python etc
+- Step:3 - Create the frontend angular application.
+   - 
+
+
+# ng generate application CRUD
+![alt text](image-7.png)
+
+ - # CORS:
+   - CORS is nothing but Cross Origin Resource Sharing.
+   - Whenever If we are requesting for a resource which is running under different place/server, then we will be getting CORS issues.
+   - We must have to configure the CORS in server application
+   - 
+
+# What is services in angular:
+ - In Angular, a service is a class that provides logic, data, or functionality that you want to share across multiple components or parts of your application.
+
+ ![alt text](image-8.png)
+
+ ![alt text](image-9.png)
+
+ # 

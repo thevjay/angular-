@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>CRUD Example with Angular 15 + Web API</h1>
+  <div>
+    <a>Insert</a>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Eno</th>
+        <th>Ename</th>
+        <th>Job</th>
+        <th>Salary</th>
+        <th>Dname</th>
+        <th>Edit | Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{emp.Eno}}</td>
+        <td>{{emp.Ename}}</td>
+        <td>{{emp.Job}}</td>
+        <td>{{emp.Salary}}</td>
+        <td>{{emp.Dname}}</td>
+        <td>
+          <a href="">Edit</a>
+          <a href="">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
