@@ -1456,4 +1456,14 @@ export class FlipkartService {
 
  ![alt text](image-9.png)
 
- # 
+ # GET and CREATE and UPDATE and DELETE:
+    
+    - ng g c Insert --skip-tests
+            - delete
+            - update
+
+# "update/:id"   => 
+  ```
+    
+  ```
+  ![alt text](image-10.png)
