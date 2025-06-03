@@ -1544,4 +1544,6 @@ library.
   - Pipe() is used to chain multiple operators that are executed in a sequence.
 
  # Component Life Cycle Hooks:
-   - 
+   - Every component when it was created, instantiated, invoked and finally destroy and each state of the component we are executiong some methods and those are nothing but component life cycle hooks.
+   - Constructor is not belongs to component life cycle hook.
+   
